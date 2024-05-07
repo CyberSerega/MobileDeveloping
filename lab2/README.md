@@ -80,5 +80,5 @@ prevButton.setOnClickListener{
 
 <h2 align="center">Вывод</h2>
 <p align="justify">Таким образом, я начал первый проект в Android Studio - GeoQuiz, создал небольшой пользовательский интерфейс, механизм переключения вопросов и проверки ответов. </p>
-<img src="res.bmp" width="450" height="500" title="res">
+<img src="res.PNG" width="300" height="500" title="res">
 
