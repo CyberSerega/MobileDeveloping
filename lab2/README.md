@@ -1,6 +1,6 @@
 <h1 align="center" paddin> МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ «САХАЛИНСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ»</h1>
 
-<p align="center">Лабораторная работа №2 "Android и модель MVC" </p>
+<p align="center"><strong>Лабораторная работа №2 "Android и модель MVC" </strong></p>
 
 <p align="right">Выполнил: Рогаль С. А.</p>
 <p align="right">Проверил: Соболев Е. И.</p>
@@ -23,18 +23,62 @@
 Для этого оба виджета должны относиться к типу ImageButton (вместо обычного Button). Виджет ImageButton является производным от ImageView, в отличие от виджета Button, производного от TextView. Диаграммы их наследования изображены на рис. 2.15. Атрибуты text и drawable кнопки NEXT можно заменить одним атрибутом ImageView.</li>
 </ol>
 <p>Конечно, вам также придется внести изменения в MainActivity, чтобы этот класс работал с ImageButton. После того как вы замените эти кнопки на кнопки ImageButton, Android Studio выдаст предупреждение об отсутствии атрибута android:contentDescription. Этот атрибут обеспечивает доступность контента для читателей с ослабленным зрением. Строка, заданная этому атрибуту, читается экранным диктором (при включении соответствующих настроек в системе пользователя). Наконец, добавьте атрибут android:contentDescription в каждый элемент ImageButton.</p>
-<img src="primer.bmp" width="450" height="500" title="hover text">
+<img src="primer.bmp" width="450" height="500" title="primer">
 
 <h2>Решение задач</h2>
-<pre>
-  '''rb
+<p>1. Определяем событие клика на TextView</p>
+
+  ```java
   questionTextView.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
             val questionTexResId = questionBank[currentIndex].textResId
             questionTextView.setText(questionTexResId)
 }
-  '''
-</pre>
+```
+
+<p>2. Создаем кнопку переключения назад prevButton и указываем обработчик клика</p>
+
+  ```java
+prevButton.setOnClickListener{
+            if(currentIndex==0){
+                currentIndex = questionBank.size
+            }
+            currentIndex = (currentIndex - 1) % questionBank.size
+            val questionTexResId = questionBank[currentIndex].textResId
+            questionTextView.setText(questionTexResId)
+}
+```
+
+<p>3. Создаем 2 кнопки типа ImageButton: переключение вперед и назад</p>
+
+  ```xml
+<ImageButton
+        android:id="@+id/next_button"
+        android:layout_width="89dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="292dp"
+        android:background="@color/white"
+        android:contentDescription="@string/next_button"
+        android:src="@drawable/arrow_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/prev_button"
+        android:layout_width="95dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginBottom="292dp"
+        android:background="@color/white"
+        android:contentDescription="@string/prev_button"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" 
+/>
+```
+
 <h2 align="center">Вывод</h2>
-<p align="justify">Таким образом, я закрепил навык работы с HTML и CSS при написании страниц, лучше стал ориентироваться в селекторах CSS, все поставленные цели были выполнены. </p>
+<p align="justify">Таким образом, я начал первый проект в Android Studio - GeoQuiz, создал небольшой пользовательский интерфейс, механизм переключения вопросов и проверки ответов. </p>
+<img src="res.bmp" width="450" height="500" title="res">
 
