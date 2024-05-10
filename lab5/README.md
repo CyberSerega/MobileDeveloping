@@ -81,6 +81,103 @@ override fun onSaveInstanceState(outState: Bundle) {
     }
 ```
 
+<h3>Задачи Codewars</h3>
+<ul>
+<li>Simple multiplication
+
+  ```kotlin
+fun simpleMultiplication(n: Int): Int {
+    if (n % 2==0)  return n*8;
+    else return n*9;
+}
+```
+
+</li>
+<li>Lost number in number sequence
+
+  ```python
+def find_deleted_number(arr, mixed_arr):
+    if len(arr)==0:
+        return 0
+    return len(arr)*((arr[0]+arr[len(arr)-1])/2)-sum(mixed_arr)
+```
+
+</li>
+<li>Remove String Spaces
+
+  ```kotlin
+fun noSpace(x: String): String {
+  return x.replace(" ", "")
+}
+```
+
+</li>
+<li>String repeat
+
+  ```kotlin
+fun repeatStr(r: Int, str: String) : String{
+    var temp = "";
+    var i=0;
+    while (i++<r){
+        temp+=str;
+    }
+    return temp;
+}
+```
+
+</li>
+<li>Function 1 - hello world
+
+  ```kotlin
+fun greet():String{
+    return "hello world!"
+}
+```
+
+</li>
+<li>Square(n) Sum
+
+  ```kotlin
+package solution
+
+fun squareSum(n: Array<Int>): Int {
+    var sum=0;
+    for (num in n){
+        sum+=num*num;
+    }
+    return sum;
+}
+```
+
+</li>
+
+<li>Century From Year
+
+  ```kotlin
+fun century(number: Int): Int {
+    if (number%100==0) return number/100;
+    return 1+number/100;
+}
+```
+
+</li>
+<li>Is n divisible by x and y?
+
+  ```kotlin
+fun isDivisible(n: Int, x: Int, y: Int): Boolean {
+    return (n%x==0) and (n%y==0)
+}
+```
+
+</li>
+<li>Even or Odd
+
+  ```kotlin
+fun evenOrOdd(number: Int): String = if (number%2==0) "Even" else "Odd"
+```
+
+</li>
+</ul>
 <h2 align="center">Вывод</h2>
 <p align="justify">Таким образом, я продолжаю изучать Android Studio и развивать свой первый проект - GeoQuiz. Добавил вторую Activity для подсказок, убрал лазейку с поворотом для читера через сохранение данных Activity. Кроме того, добавил отслеживание читов.</p>
 
