@@ -20,152 +20,201 @@
 Первый вариант более удобен – в нем представление контента будет храниться обособлено от итоговой кодификации управления поведением. За счет этого отладка и корректировка элементов на дисплее Android контента станет проще и безопаснее. XML-документы макетов размещаются в папке res/layout.</p>
 <h2 align="center">Цели и задачи</h2>
 <p><strong>Упражнение. Сделать функциональный макет</strong></p>
-<p>Необходимо реализовать макет по изображению использую материалы из архива lab7.zip, соблюдая отступы согласно рисунку 1. </p>
-
+<p>Необходимо реализовать макет по изображению использую материалы из архива lab7.zip, соблюдая отступы согласно рисунку 1. Реализовать простую авторизацию по логину паролю, при удачной попытке вывести пользователю сообщение об авторизации, если пароль логин неверный, то сообщение об ошибке. </p>
+<img src="pic1.PNG" width="428" height="801" title="task">
 
 <h2>Решение задач</h2>
-<p>Добавили apiVersionTextView на макет, в класс MainActivity добавили аналогичную переменную. Кроме того, при запуске приложения (OnCreate) задаем текст для apiVersionTextView в виде уровня API устройства</p>
+<p>Реазовали макет посредством разметки XML, код и его результат приведены ниже</p>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3ADDCA"
+        android:clickable="false"
+        app:srcCompat="@drawable/background"
+        tools:ignore="ContentDescription"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:text="or sign in with"
+        android:textColor="#A19E9E"
+        app:layout_constraintBottom_toTopOf="@+id/facebook_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978" />
+
+    <ImageView
+        android:id="@+id/google_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/google"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/facebook_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toEndOf="@+id/google_icon"
+        app:srcCompat="@drawable/fb"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/twitter" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="76dp"
+        android:text="Sign in"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#F3EDED"
+        android:backgroundTint="#8E50DD"
+        android:drawableStart="@drawable/icon_info"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/white"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingStart="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="361dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="40dp"
+        android:background="#9D4AE2"
+        android:drawableStart="@drawable/icon_user"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/white"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        android:paddingStart="13dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/login_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="89dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/design_default_color_secondary"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="Login"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Forgot password?"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+<p>На заметку: для изменения фона компонента нужно в файле themes.xml (и в night) в папке res/values/themes изменить строчку, а точнее атрибут parent на такой:</p>
+
+```xml
+<style name="Base.Theme.Lab7maket" parent="Theme.AppCompat.Light.NoActionBar">
+```
+
+<img src="res.PNG" width="427" height="780" title="Результат">
+
+
+<p>Реализована авторизация:</p>
 
 ```kotlin
-private lateinit var apiVersionTextView: TextView
-apiVersionTextView.setText("API Version " + Build.VERSION.SDK)
-```
+class MainActivity : AppCompatActivity() {
 
-<p>Для ограничения подсказок создали переменную-счетчик cheatsLeft, значение которой будет отображаться на макете в cheatsLeftTextView. При нажатии на кнопку вызова подсказки cheatButton их количество уменьшается. При отсутствии подсказок кнопка блокируется.</p>
+    private lateinit var loginButton: Button
+    private lateinit var usernameEditText: EditText
+    private lateinit var passwordEditText: EditText
 
-```kotlin
-private lateinit var cheatsLeftTextView: TextView
-private var cheatsLeft = 3
-cheatButton.setOnClickListener {
-...
-cheatsLeft-=1
-if(cheatsLeft==0){
-                cheatButton.isEnabled = false
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ...
+        loginButton = findViewById(R.id.login_button)
+        usernameEditText = findViewById(R.id.usernameEditText)
+        passwordEditText = findViewById(R.id.passwordEditText)
+
+        loginButton.setOnClickListener {
+            val username: String = usernameEditText.getText().toString()
+            val password: String = passwordEditText.getText().toString()
+            if (username=="admin" && password=="admin"){
+                Toast.makeText(this, R.string.correct_login_toast, Toast.LENGTH_SHORT).show()
             }
-}
-```
-
-<h3>Задачи Codewars</h3>
-<ul>
-<li>Fix string case
-
-  ```kotlin
-object FixStringCase {
-    
-    fun solve(s: String): String {
-        var countUpper = 0
-        var countLower = 0
-        for(symb in s){
-            if(symb.isUpperCase()) countUpper+=1
-            else countLower+=1
+            else Toast.makeText(this, R.string.incorrect_login_toast, Toast.LENGTH_SHORT).show()
         }
-        var res = ""
-        if(countUpper>countLower){
-            for(symb in s){
-                if(symb.isLowerCase()) res+=symb.uppercase()
-                else res+=symb
-            }
-        }        
-        else{
-            for(symb in s){
-                if(symb.isUpperCase()) res+=symb.lowercase()
-                else res+=symb
-            }
-        }
-        return res
-    }   
-}
-```
-
-</li>
-<li>Geometric Progression Sequence
-
-  ```kotlin
-fun geometricSequenceElements(a: Int, r: Int, n: Int): String{
-    val myArray = Array(n, {1})
-    myArray[0] = a
-    for (i in 1..n-1){
-        myArray[i]=myArray[i-1]*r
-    }
-    return myArray.joinToString(separator = ", ")  
-}
-```
-
-</li>
-<li>Count the Digit
-
-  ```kotlin
-package countdig
-
-fun nbDig(n:Int, d:Int):Int {
-    var res = 0
-    for(k in 0..n){
-        res+= (k*k).toString().count{ it.digitToInt()==d}
-    }
-    return res
-}
-```
-
-</li>
-<li>Sum of odd numbers
-
-  ```kotlin
-fun rowSumOddNumbers(n: Int): Int {
-    var start = 1+(n-1)*(2+(n-1)*2)/2
-    var sum = start
-    for (i in 1..n-1){
-        sum+=start+2*i
-    }
-    return sum
-}
-```
-
-</li>
-<li>Alphabet war
-
-  ```kotlin
-fun alphabetWar(fight: String): String {
-   val leftSide: Map<Char, Int> = mapOf('w' to 4, 'p' to 3,'b' to 2,'s' to 1)
-   val rightSide: Map<Char, Int> = mapOf('m' to 4, 'q' to 3,'d' to 2,'z' to 1)
-   var leftSum = 0
-   var rightSum = 0
-   for (symb in fight.toList() ){
-        if(leftSide.containsKey(symb)){
-            leftSum+=leftSide[symb]!!.toInt()
-        }
-        else if(rightSide.containsKey(symb)){
-            rightSum+=rightSide[symb]!!.toInt()
-        }
-   }
-   if(leftSum<rightSum){
-       return "Right side wins!"
-   }
-   else if(leftSum>rightSum){
-       return "Left side wins!"
-   }
-   else return "Let's fight again!"
-}
-```
-
-</li>
-<li>The 'spiraling' box
-
-  ```kotlin
-import kotlin.math.*
-
-fun createBox(width: Int, length: Int) = Array(length) {r -> 
-    IntArray(width) { x -> 
-        var row = min(r + 1, length - r)
-        var col = min(x + 1, width - x)
-        min(row, col) 
     }
 }
 ```
 
 </ul>
 <h2 align="center">Вывод</h2>
-<p align="justify">Таким образом, я продолжаю изучать Android Studio и развивать свой первый проект - GeoQuiz. Добавил вывод версии API устройства, ограничил пользователя тремя подсказками, результат на рисунке.</p>
-<img src="res.PNG" width="428" height="801" title="GeoQuiz">
+<p align="justify">Таким образом, я продолжаю изучать Android Studio в направлении пользовательского интерфейса. Коснулся темы разметки XML и различных атрибутов компонентов, таких как TextView, EditText, ImageView и других.</p>
 
 
 
