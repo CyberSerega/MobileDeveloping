@@ -160,7 +160,8 @@ fun createBox(width: Int, length: Int) = Array(length) {r ->
 
 </ul>
 <h2 align="center">Вывод</h2>
-<p align="justify">Таким образом, я продолжаю изучать Android Studio и развивать свой первый проект - GeoQuiz. Добавил вывод версии API устройства, ограничил пользователя тремя подсказками</p>
+<p align="justify">Таким образом, я продолжаю изучать Android Studio и развивать свой первый проект - GeoQuiz. Добавил вывод версии API устройства, ограничил пользователя тремя подсказками, результат на рисунке.</p>
+<img src="res.PNG" width="428" height="801" title="GeoQuiz">
 
 
 
